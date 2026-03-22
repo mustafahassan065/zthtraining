@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZTH Training — Sign for a Pro Academy in 30 Days | Player Accelerator</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&family=Nunito:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:#f0f7f0;color:#1a2e1a;font-family:'Nunito',sans-serif;overflow-x:hidden}
+.font-display{font-family:'Teko',sans-serif}
+.font-mono{font-family:'Space Mono',monospace}
+
+:root{
+  --bg:#f0f7f0;--white:#ffffff;--surface:#e8f4e8;
+  --forest:#0a2e0a;--forestl:#134513;--forestd:#061806;
+  --grass:#16a34a;--grassl:#22c55e;--grassd:#15803d;
+  --lime:#84cc16;--limel:#a3e635;
+  --gold:#d97706;--goldl:#f59e0b;
+  --red:#dc2626;--cream:#fefce8;
+  --border:#b8d4b8;--muted:#5a7a5a;--text:#1a2e1a;
+}
+
+/* Football field grid */
+.field-bg{
+  background-image:
+    linear-gradient(rgba(22,163,74,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(22,163,74,.06) 1px,transparent 1px);
+  background-size:50px 50px;
+}
+
+/* Pitch stripes */
+.pitch-stripes{
+  background:repeating-linear-gradient(
+    90deg,
+    rgba(22,163,74,.04) 0px,rgba(22,163,74,.04) 60px,
+    transparent 60px,transparent 120px
+  );
+}
+
+/* Marquee */
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-anim{animation:ticker 28s linear infinite}
+
+/* Float */
+@keyframes kick{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(3deg) translateY(-14px)}}
+.kick{animation:kick 4s ease infinite}
+@keyframes kick2{0%,100%{transform:rotate(2deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-10px)}}
+.kick2{animation:kick2 5s ease .7s infinite}
+
+/* Reveal */
+.rev{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.rev.vis{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* Card hover */
+.ch{transition:transform .22s,box-shadow .22s,border-color .25s}
+.ch:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(10,46,10,.15);border-color:#16a34a!important}
+
+/* Whistle pulse */
+@keyframes whistle{0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,.5)}70%{box-shadow:0 0 0 14px rgba(22,163,74,0)}}
+.whistle{animation:whistle 2.2s ease infinite}
+
+/* Score counter */
+.score-num{font-family:'Teko',sans-serif;font-size:5rem;line-height:1;font-weight:700;color:#0a2e0a}
+
+/* Hamburger */
+#mob-menu{display:none;flex-direction:column;background:#f8fcf8;border-top:2px solid #b8d4b8;padding:16px 20px;gap:4px}
+#mob-menu.open{display:flex}
+#hl1,#hl2,#hl3{transition:transform .25s,opacity .25s;transform-origin:center}
+.ham-open #hl1{transform:translateY(7px) rotate(45deg)}
+.ham-open #hl2{opacity:0;transform:scaleX(0)}
+.ham-open #hl3{transform:translateY(-7px) rotate(-45deg)}
+
+/* Tag styles */
+.tag-g{background:#16a34a;color:#fff;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:5px 14px;border-radius:4px;display:inline-block}
+.tag-dark{background:#0a2e0a;color:#22c55e;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:5px 14px;border-radius:4px;display:inline-block}
+.tag-line{border:2px solid #b8d4b8;color:#5a7a5a;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:4px 12px;border-radius:4px;display:inline-block}
+.tag-gold{background:#d97706;color:#fff;font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:5px 14px;border-radius:4px;display:inline-block}
+
+/* Blink */
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.blink{animation:blink 1.5s step-end infinite}
+
+/* Zigzag border */
+.zigzag-top{
+  background:linear-gradient(-45deg,#0a2e0a 25%,transparent 25%) top/20px 10px,
+             linear-gradient(45deg,#0a2e0a 25%,transparent 25%) top/20px 10px;
+  background-repeat:repeat-x;height:10px;
+}
+</style>
+</head>
+<body style="background:#f0f7f0">
+
+<!-- TOP BANNER -->
+<div style="background:#0a2e0a;overflow:hidden;padding:10px 0;border-bottom:3px solid #16a34a">
+  <div class="ticker-anim flex gap-16 w-max items-center">
+    <div class="flex items-center gap-12 whitespace-nowrap">
+      <span class="font-display font-bold text-[#22c55e] text-base tracking-widest uppercase">⚽ ZTH TRAINING</span>
+      <span class="font-mono text-white/30 text-xs">·</span>
+      <span class="font-mono text-xs text-white/50 uppercase tracking-widest">Sign for a Pro Academy in 30 Days</span>
+      <span class="font-mono text-white/30 text-xs">·</span>
+      <span class="font-display font-bold text-[#22c55e] text-base tracking-widest uppercase">Founded by Haris Hussaini · Ex-Pro</span>
+      <span class="font-mono text-white/30 text-xs">·</span>
+      <span class="font-mono text-xs text-white/50 uppercase tracking-widest">2,700+ Players · 5.0★ Rating</span>
+      <span class="font-mono text-white/30 text-xs">·</span>
+      <span class="font-display font-bold text-[#f59e0b] text-base tracking-widest uppercase">$39 / 28 Days · 30% Affiliate</span>
+      <span class="font-mono text-white/30 text-xs">·</span>
+    </div>
+    <div class="flex items-center gap-12 whitespace-nowrap">
+      <span class="font-display font-bold text-[#22c55e] text-base tracking-widest uppercase">⚽ ZTH TRAINING</span>
+      <span class="font-mono text-white/30 text-xs">·</span>
+      <span class="font-mono text-xs text-white/50 uppercase tracking-widest">Sign for a Pro Academy in 30 Days</span>
+      <span class="font-mono text-white/30 text-xs">·</span>
+      <span class="font-display font-bold text-[#22c55e] text-base tracking-widest uppercase">Founded by Haris Hussaini · Ex-Pro</span>
+      <span class="font-mono text-white/30 text-xs">·</span>
+      <span class="font-mono text-xs text-white/50 uppercase tracking-widest">2,700+ Players · 5.0★ Rating</span>
+      <span class="font-mono text-white/30 text-xs">·</span>
+      <span class="font-display font-bold text-[#f59e0b] text-base tracking-widest uppercase">$39 / 28 Days · 30% Affiliate</span>
+      <span class="font-mono text-white/30 text-xs">·</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-[#f8fcf8]/95 backdrop-blur-sm" style="border-bottom:2px solid #b8d4b8">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10 h-[68px] flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3 no-underline flex-shrink-0">
+      <div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style="background:#0a2e0a">⚽</div>
+      <div>
+        <div class="font-display font-bold text-[#0a2e0a] text-2xl leading-none tracking-wide">ZTH Training</div>
+        <div class="font-mono text-[9px] text-[#16a34a] tracking-widest uppercase mt-0.5">Player Accelerator · Pro Academy Path</div>
+      </div>
+    </a>
+
+    <ul class="hidden lg:flex items-center gap-7 list-none">
+      <li><a href="#program"   class="text-[#5a7a5a] text-sm font-bold hover:text-[#16a34a] transition-colors no-underline">The Program</a></li>
+      <li><a href="#haris"     class="text-[#5a7a5a] text-sm font-bold hover:text-[#16a34a] transition-colors no-underline">Coach Haris</a></li>
+      <li><a href="#results"   class="text-[#5a7a5a] text-sm font-bold hover:text-[#16a34a] transition-colors no-underline">Results</a></li>
+      <li><a href="#reviews"   class="text-[#5a7a5a] text-sm font-bold hover:text-[#16a34a] transition-colors no-underline">Players</a></li>
+      <li><a href="#pricing"   class="text-[#5a7a5a] text-sm font-bold hover:text-[#16a34a] transition-colors no-underline">Pricing</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <a href="https://whop.com/zth-training/zth-training?a=digitalartlab"
+         class="hidden lg:inline-flex items-center gap-2 bg-[#16a34a] hover:bg-[#15803d] text-white font-black text-sm px-5 py-2.5 rounded-xl transition-all no-underline"
+         style="box-shadow:0 4px 14px rgba(22,163,74,.35)">
+        ⚽ Join — $39/28 days
+      </a>
+      <button id="ham-btn" class="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-[#e8f4e8] transition-colors" aria-label="Toggle menu" aria-expanded="false">
+        <span id="hl1" class="block w-6 h-0.5 bg-[#0a2e0a] rounded-full"></span>
+        <span id="hl2" class="block w-6 h-0.5 bg-[#0a2e0a] rounded-full"></span>
+        <span id="hl3" class="block w-6 h-0.5 bg-[#0a2e0a] rounded-full"></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mob-menu" role="navigation">
+    <a href="#program"  class="mob-lnk text-[#1a2e1a] hover:text-[#16a34a] text-sm font-bold py-3 px-3 rounded-lg hover:bg-[#e8f4e8] transition-colors no-underline">📋 The Program</a>
+    <a href="#haris"    class="mob-lnk text-[#1a2e1a] hover:text-[#16a34a] text-sm font-bold py-3 px-3 rounded-lg hover:bg-[#e8f4e8] transition-colors no-underline">👤 Coach Haris</a>
+    <a href="#results"  class="mob-lnk text-[#1a2e1a] hover:text-[#16a34a] text-sm font-bold py-3 px-3 rounded-lg hover:bg-[#e8f4e8] transition-colors no-underline">🏆 Results</a>
+    <a href="#reviews"  class="mob-lnk text-[#1a2e1a] hover:text-[#16a34a] text-sm font-bold py-3 px-3 rounded-lg hover:bg-[#e8f4e8] transition-colors no-underline">⭐ Players</a>
+    <a href="#pricing"  class="mob-lnk text-[#1a2e1a] hover:text-[#16a34a] text-sm font-bold py-3 px-3 rounded-lg hover:bg-[#e8f4e8] transition-colors no-underline">💰 Pricing</a>
+    <a href="#faq"      class="mob-lnk text-[#1a2e1a] hover:text-[#16a34a] text-sm font-bold py-3 px-3 rounded-lg hover:bg-[#e8f4e8] transition-colors no-underline">❓ FAQ</a>
+    <div style="border-top:1px solid #b8d4b8;padding-top:16px;margin-top:8px;display:flex;flex-direction:column;gap:10px">
+      <a href="https://whop.com/zth-training/zth-training?a=digitalartlab"
+         class="mob-lnk block text-center bg-[#16a34a] hover:bg-[#15803d] text-white font-black text-sm px-5 py-3.5 rounded-xl no-underline">
+        ⚽ Join ZTH Player Accelerator
+      </a>
+      <a href="https://whop.com/zth-training?a=digitalartlab"
+         class="mob-lnk block text-center text-[#16a34a] font-bold text-sm px-5 py-3 rounded-xl no-underline"
+         style="border:1px solid #b8d4b8">
+        View on Whop →
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative overflow-hidden" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0 60px">
+  <!-- BG -->
+  <div class="absolute inset-0 field-bg"></div>
+  <div class="absolute inset-0 pitch-stripes"></div>
+  <!-- Green glow -->
+  <div class="absolute top-0 right-0 w-[700px] h-[700px] pointer-events-none rounded-full" style="background:radial-gradient(circle,rgba(22,163,74,.1) 0%,transparent 65%);transform:translate(25%,-25%)"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] pointer-events-none rounded-full" style="background:radial-gradient(circle,rgba(10,46,10,.07) 0%,transparent 65%);transform:translate(-20%,20%)"></div>
+
+  <div class="max-w-7xl mx-auto px-5 lg:px-10 relative z-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+      <!-- LEFT -->
+      <div>
+        <div class="inline-flex items-center gap-2.5 mb-8 rounded-full px-4 py-2" style="background:#0a2e0a">
+          <span class="w-2 h-2 rounded-full bg-[#22c55e] blink flex-shrink-0"></span>
+          <span class="font-mono text-xs text-[#22c55e] tracking-widest uppercase font-bold">Ex-Pro Haris Hussaini · 2,700+ Players · 5.0★</span>
+        </div>
+
+        <!-- BIG headline -->
+        <h1 class="font-display font-bold text-[#0a2e0a] leading-none mb-4" style="font-size:clamp(3.5rem,10vw,8.5rem);line-height:.88">
+          SIGN FOR A<br>
+          <span style="color:#16a34a">PRO ACADEMY</span><br>
+          IN 30 DAYS.
+        </h1>
+
+        <p class="text-[#5a7a5a] text-base lg:text-lg leading-relaxed mb-8 max-w-xl font-semibold">
+          ZTH Player Accelerator is <strong class="text-[#0a2e0a]">the only programme built by a former pro player</strong> to make you academy-ready in 30 days or less. Daily routines, weekly schedules, pro player interviews, the Ultimate Trial Day Guide, and weekly coaching calls with <strong class="text-[#16a34a]">Haris Hussaini</strong> — the player who's been in the dressing rooms you want to walk into.
+        </p>
+
+        <div class="flex flex-wrap gap-3 mb-10">
+          <a href="https://whop.com/zth-training/zth-training?a=digitalartlab"
+             class="inline-flex items-center gap-2 bg-[#16a34a] hover:bg-[#15803d] text-white font-black text-base px-7 py-3.5 rounded-xl transition-all no-underline"
+             style="box-shadow:0 6px 20px rgba(22,163,74,.35)">
+            ⚽ Join the Accelerator — $39
+          </a>
+          <a href="#program"
+             class="inline-flex items-center gap-2 text-[#0a2e0a] font-bold text-base px-7 py-3.5 rounded-xl border-2 transition-all no-underline"
+             style="border-color:#b8d4b8;background:#fff">
+            See the Programme ↓
+          </a>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-5 text-sm text-[#5a7a5a] font-bold">
+          <div class="flex items-center gap-1.5"><span class="text-yellow-500">★★★★★</span><span>5.0 · Whop Verified</span></div>
+          <span class="w-px h-4" style="background:#b8d4b8"></span>
+          <span><strong class="text-[#0a2e0a]">2,700+</strong> players worldwide</span>
+          <span class="w-px h-4" style="background:#b8d4b8"></span>
+          <span>Only <strong class="text-[#16a34a]">$39</strong> / 28 days</span>
+          <span class="w-px h-4" style="background:#b8d4b8"></span>
+          <span><strong class="text-[#d97706]">30%</strong> affiliate</span>
+        </div>
+      </div>
+
+      <!-- RIGHT — card cluster -->
+      <div class="hidden lg:flex justify-center items-center relative h-[540px]">
+
+        <!-- Main programme card -->
+        <div class="absolute right-0 top-10 kick" style="width:290px">
+          <div class="rounded-2xl overflow-hidden" style="background:#fff;border:3px solid #0a2e0a;box-shadow:6px 6px 0 #0a2e0a">
+            <div class="px-4 py-3 flex items-center justify-between" style="background:#0a2e0a">
+              <span class="font-display font-bold text-[#22c55e] text-lg tracking-wider">PLAYER ACCELERATOR</span>
+              <span class="text-xl">⚽</span>
+            </div>
+            <img src="https://plus.unsplash.com/premium_photo-1661860893141-c939330d0164?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cHJvZmVzc2lvbmFsJTIwZm9vdGJhbGx8ZW58MHx8MHx8fDA%3D" alt="" class="w-full h-36 object-cover" style="filter:saturate(.6) brightness(.85)">
+            <div style="padding:16px">
+              <div class="font-mono text-xs text-[#16a34a] uppercase tracking-widest mb-2 font-bold">30-Day Goal</div>
+              <div class="font-display font-bold text-[#0a2e0a] text-xl">Academy Trial Ready</div>
+              <div class="flex items-center gap-2 mt-2">
+                <div class="flex-1 h-2 rounded-full" style="background:#e8f4e8;overflow:hidden">
+                  <div class="h-full rounded-full" style="width:85%;background:#16a34a"></div>
+                </div>
+                <span class="font-mono text-xs text-[#16a34a] font-bold">Day 25</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trial day card -->
+        <div class="absolute left-0 top-20 kick2" style="width:200px">
+          <div class="rounded-xl p-5 whistle" style="background:#0a2e0a;border:2px solid #16a34a">
+            <div class="font-mono text-[10px] text-[#22c55e] uppercase tracking-widest mb-2 font-bold">Trial Day Guide™</div>
+            <div class="font-display font-bold text-white text-xl">MENTAL +<br>PHYSICAL</div>
+            <div class="font-mono text-xs text-white/50 mt-1">Ultimate prep guide</div>
+          </div>
+        </div>
+
+        <!-- Win badge -->
+        <div class="absolute left-5 bottom-12 rounded-xl p-4" style="background:#f59e0b;border:3px solid #0a2e0a;box-shadow:4px 4px 0 #0a2e0a;width:180px;animation:kick 5s ease 2s infinite">
+          <div class="font-mono text-[10px] text-black uppercase tracking-widest mb-1 font-bold">Member Result</div>
+          <div class="font-display font-bold text-black text-2xl leading-tight">"SIGNED.<br>WEEK 3." 🏆</div>
+        </div>
+
+        <!-- Haris badge -->
+        <div class="absolute right-3 bottom-8 rounded-xl p-3 text-center" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a;width:130px">
+          <div class="font-mono text-[9px] text-[#5a7a5a] uppercase tracking-wider mb-1">Coach</div>
+          <div class="font-display font-bold text-[#0a2e0a] text-xl">HARIS</div>
+          <div class="font-mono text-[9px] text-[#16a34a] font-bold">Ex-Pro ✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 rounded-2xl overflow-hidden mt-16 rev" style="border:2px solid #0a2e0a;box-shadow:4px 4px 0 #0a2e0a;background:#fff">
+      <div class="py-9 px-7 text-center group" style="border-right:2px solid #e8f4e8">
+        <div class="score-num group-hover:text-[#16a34a] transition-colors">30</div>
+        <div class="font-mono text-xs text-[#5a7a5a] uppercase tracking-widest mt-1 font-bold">Days to Trial-Ready</div>
+      </div>
+      <div class="py-9 px-7 text-center group" style="border-right:2px solid #e8f4e8">
+        <div class="score-num group-hover:text-[#16a34a] transition-colors">2700+</div>
+        <div class="font-mono text-xs text-[#5a7a5a] uppercase tracking-widest mt-1 font-bold">Players Worldwide</div>
+      </div>
+      <div class="py-9 px-7 text-center group" style="border-right:2px solid #e8f4e8">
+        <div class="score-num group-hover:text-[#16a34a] transition-colors">5.0★</div>
+        <div class="font-mono text-xs text-[#5a7a5a] uppercase tracking-widest mt-1 font-bold">Whop Rating</div>
+      </div>
+      <div class="py-9 px-7 text-center group">
+        <div class="score-num group-hover:text-[#16a34a] transition-colors">$39</div>
+        <div class="font-mono text-xs text-[#5a7a5a] uppercase tracking-widest mt-1 font-bold">Per 28 Days</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MISSION -->
+<section class="py-20" style="background:#0a2e0a;border-top:3px solid #16a34a;border-bottom:3px solid #16a34a">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="rev">
+        <span class="tag-g mb-6 inline-block">The Mission</span>
+        <h2 class="font-display font-bold text-white mb-5" style="font-size:clamp(2.5rem,5vw,5rem);line-height:.88">
+          EVERY PLAYER<br>DESERVES A<br><span style="color:#22c55e">REAL SHOT.</span>
+        </h2>
+        <p class="text-white/60 text-base leading-relaxed mb-6 font-semibold">Most talented players never get a trial. Not because they aren't good enough — but because nobody ever showed them how to present their best self. How to train with discipline. How to walk into an academy trial and perform when it matters.</p>
+        <p class="text-white/60 text-base leading-relaxed mb-8 font-semibold">ZTH exists to close that gap. Haris Hussaini built this programme from 15 years of pro football experience — and created the system he wishes he'd had when he was starting.</p>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-xl p-4" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)">
+            <div class="font-mono text-xs text-[#22c55e] uppercase tracking-widest mb-2 font-bold">Without ZTH</div>
+            <div class="text-white/60 text-sm leading-relaxed">Random training. No structure. No trial prep. Same level year after year.</div>
+          </div>
+          <div class="rounded-xl p-4" style="background:rgba(22,163,74,.1);border:1px solid rgba(22,163,74,.25)">
+            <div class="font-mono text-xs text-[#22c55e] uppercase tracking-widest mb-2 font-bold">With ZTH</div>
+            <div class="text-white/80 text-sm leading-relaxed">Pro daily routine. Trial-ready. Confidence on the ball. Real opportunities.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rev d1">
+        <div class="rounded-2xl overflow-hidden" style="border:3px solid #22c55e;box-shadow:0 0 40px rgba(22,163,74,.15)">
+          <img src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=800&q=80&auto=format&fit=crop" alt="" class="w-full h-64 object-cover" style="filter:saturate(.5) brightness(.7)">
+          <div style="background:#0f1e0f;padding:24px">
+            <div class="font-mono text-xs text-[#22c55e] uppercase tracking-widest mb-2 font-bold">Verified Member · 2025</div>
+            <div class="font-display font-bold text-white text-xl leading-tight italic">"ZTH provides a structured schedule for you to train like a pro and have discipline. This programme is for those who actually want to be a better player."</div>
+            <div class="font-mono text-xs text-white/30 mt-2">— Verified ZTH Player · 1 year in programme</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME FEATURES -->
+<section class="py-28" id="program" style="background:#f0f7f0">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="text-center mb-14 rev">
+      <span class="tag-dark mb-5 inline-block">What's Inside</span>
+      <h2 class="font-display font-bold text-[#0a2e0a] mb-4" style="font-size:clamp(2.5rem,6vw,5.5rem);line-height:.88">
+        EVERYTHING TO GET YOU<br><span style="color:#16a34a">ACADEMY READY.</span>
+      </h2>
+      <p class="text-[#5a7a5a] text-lg max-w-xl mx-auto font-semibold">One $39 membership. The complete ZTH Player Accelerator programme — structured, proven, and built by a former pro.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Player Accelerator Course — hero -->
+      <div class="lg:col-span-2 rounded-2xl overflow-hidden ch rev" style="background:#fff;border:2px solid #0a2e0a;box-shadow:4px 4px 0 #0a2e0a">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div style="padding:28px">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5" style="background:#e8f4e8;border:2px solid #b8d4b8">📋</div>
+            <span class="tag-g mb-4 inline-block" style="font-size:10px">01 · Core Programme</span>
+            <h3 class="font-display font-bold text-[#0a2e0a] text-3xl leading-tight mb-3">PLAYER ACCELERATOR COURSE</h3>
+            <p class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">Step-by-step course modules covering technical development, physical conditioning, mental preparation, and tactical understanding. Built around <strong class="text-[#0a2e0a]">30 days of structured daily training</strong> — not random exercises. A proven pathway from where you are to where you want to be.</p>
+          </div>
+          <div style="padding:20px;background:#f0f7f0;display:flex;flex-direction:column;gap:10px;justify-content:center">
+            <div class="rounded-xl p-3.5" style="background:#fff;border:1.5px solid #b8d4b8">
+              <div class="font-mono text-[10px] text-[#16a34a] uppercase tracking-widest mb-1.5 font-bold">Week 1</div>
+              <div class="font-bold text-[#0a2e0a] text-sm">Technical Foundation</div>
+              <div class="font-mono text-xs text-[#5a7a5a] mt-1">Ball control · 1v1 skills · First touch</div>
+            </div>
+            <div class="rounded-xl p-3.5" style="background:#fff;border:1.5px solid #b8d4b8">
+              <div class="font-mono text-[10px] text-[#16a34a] uppercase tracking-widest mb-1.5 font-bold">Week 2-3</div>
+              <div class="font-bold text-[#0a2e0a] text-sm">Physical & Mental Edge</div>
+              <div class="font-mono text-xs text-[#5a7a5a] mt-1">Conditioning · Speed · Confidence</div>
+            </div>
+            <div class="rounded-xl p-3.5" style="background:#e8f4e8;border:1.5px solid #16a34a">
+              <div class="font-mono text-[10px] text-[#16a34a] uppercase tracking-widest mb-1.5 font-bold">Week 4</div>
+              <div class="font-bold text-[#0a2e0a] text-sm">Trial Day Simulation</div>
+              <div class="font-mono text-xs text-[#5a7a5a] mt-1">Academy-level pressure prep ✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trial Day Guide -->
+      <div class="rounded-2xl p-7 ch rev d1" style="background:#0a2e0a;border:2px solid #0a2e0a;box-shadow:4px 4px 0 #16a34a">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5" style="background:rgba(34,197,94,.15);border:1.5px solid rgba(34,197,94,.3)">📖</div>
+        <span class="tag-g mb-4 inline-block" style="font-size:10px">02 · Exclusive</span>
+        <h3 class="font-display font-bold text-white text-2xl mb-3">ULTIMATE TRIAL DAY GUIDE</h3>
+        <p class="text-white/60 text-sm leading-relaxed font-semibold">The guide Haris wishes he had. Everything you need to know about trial day — what to eat, how to warm up, what scouts are watching, how to handle nerves, and how to leave a lasting impression. Mental and physical preparation combined.</p>
+        <div class="mt-4 rounded-lg p-3" style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2)">
+          <div class="font-mono text-xs text-[#22c55e] font-bold">Included · Members Only</div>
+        </div>
+      </div>
+
+      <!-- Pro Interviews -->
+      <div class="rounded-2xl p-7 ch rev" style="background:#fff;border:2px solid #e8f4e8;box-shadow:3px 3px 0 #b8d4b8">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5" style="background:#e8f4e8;border:2px solid #b8d4b8">🎙️</div>
+        <span class="tag-line mb-4 inline-block" style="font-size:10px">03</span>
+        <h3 class="font-display font-bold text-[#0a2e0a] text-2xl mb-3">PRO PLAYER INTERVIEWS</h3>
+        <p class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">Behind-the-scenes access — full interviews with professional players sharing exactly how they got signed, what trials are really like, and what they wished they knew earlier. The insider knowledge that doesn't exist on YouTube.</p>
+      </div>
+
+      <!-- Weekly Coaching Calls -->
+      <div class="rounded-2xl p-7 ch rev d1" style="background:#fff;border:2px solid #e8f4e8;box-shadow:3px 3px 0 #b8d4b8">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5" style="background:#e8f4e8;border:2px solid #b8d4b8">📞</div>
+        <span class="tag-line mb-4 inline-block" style="font-size:10px">04</span>
+        <h3 class="font-display font-bold text-[#0a2e0a] text-2xl mb-3">WEEKLY COACHING CALLS</h3>
+        <p class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">Direct weekly access to Haris — the man who built the programme. Ask questions, get feedback on your training, discuss your specific weaknesses. This is not pre-recorded Q&A. Haris is live, responsive, and invested in every player's development.</p>
+      </div>
+
+      <!-- Community -->
+      <div class="rounded-2xl p-7 ch rev d2" style="background:#fff;border:2px solid #e8f4e8;box-shadow:3px 3px 0 #b8d4b8">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-5" style="background:#e8f4e8;border:2px solid #b8d4b8">👥</div>
+        <span class="tag-line mb-4 inline-block" style="font-size:10px">05</span>
+        <h3 class="font-display font-bold text-[#0a2e0a] text-2xl mb-3">GLOBAL PLAYER COMMUNITY</h3>
+        <p class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">Connect with 2,700+ motivated players from around the world who are all on the same journey. Share training wins, ask questions, find accountability partners, and celebrate each other's trials and signings. The team you never had, online 24/7.</p>
+      </div>
+
+      <!-- Affiliate wide card -->
+      <div class="md:col-span-2 lg:col-span-3 rounded-2xl p-7 ch rev" style="background:linear-gradient(135deg,#0a2e0a,#134513);border:2px solid #16a34a;box-shadow:4px 4px 0 #0a2e0a">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+          <div class="md:col-span-2">
+            <span class="tag-g mb-4 inline-block" style="font-size:10px">06 · Earn</span>
+            <h3 class="font-display font-bold text-white text-3xl mb-3">REFER A PLAYER. EARN 30%.</h3>
+            <p class="text-white/60 text-sm leading-relaxed font-semibold max-w-2xl">The ZTH affiliate programme pays 30% recurring commission on every player you refer who joins the Player Accelerator. Share the programme that changed your game — earn every month they stay active. Paid automatically via Whop. No minimum threshold.</p>
+          </div>
+          <div class="text-center">
+            <div class="score-num" style="font-size:5rem;color:#22c55e">30%</div>
+            <div class="font-mono text-xs text-white/30 uppercase tracking-widest mt-1 font-bold">Recurring Commission</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HARIS SECTION -->
+<section class="py-24" id="haris" style="background:#e8f4e8;border-top:2px solid #b8d4b8;border-bottom:2px solid #b8d4b8">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+      <div class="rev">
+        <span class="tag-dark mb-6 inline-block">Your Coach</span>
+        <h2 class="font-display font-bold text-[#0a2e0a] mb-5" style="font-size:clamp(2.5rem,5vw,5rem);line-height:.88">
+          HARIS HUSSAINI<br><span style="color:#16a34a">BUILT IT.</span><br>LIVED IT.
+        </h2>
+        <p class="text-[#5a7a5a] text-base leading-relaxed mb-5 font-semibold">Haris Hussaini played professional football for years — experienced the trials, the rejections, the signings, and everything in between. He knows what scouts look for because he stood in front of them. He knows what makes players fail because he watched it happen.</p>
+        <p class="text-[#5a7a5a] text-base leading-relaxed mb-8 font-semibold">He built the ZTH Player Accelerator because he saw talented players never getting their chance — not due to lack of ability, but lack of direction, structure, and the right knowledge. ZTH is the programme that closes that gap.</p>
+
+        <blockquote style="border-left:4px solid #16a34a;padding-left:20px;margin-bottom:28px">
+          <p class="font-display font-bold text-[#0a2e0a] text-2xl leading-tight">"This programme is for those who actually want to be a better player. Not for those who quit the next day."</p>
+          <cite class="font-mono text-xs text-[#5a7a5a] mt-2 block not-italic">— Haris Hussaini · Founder · ZTH Training</cite>
+        </blockquote>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div class="rounded-xl p-4 text-center" style="background:#fff;border:2px solid #b8d4b8;box-shadow:2px 2px 0 #b8d4b8">
+            <div class="score-num" style="font-size:2.5rem;color:#16a34a">Pro</div>
+            <div class="font-mono text-[9px] text-[#5a7a5a] uppercase tracking-widest mt-1 font-bold">Experience</div>
+          </div>
+          <div class="rounded-xl p-4 text-center" style="background:#0a2e0a;border:2px solid #0a2e0a;box-shadow:2px 2px 0 #16a34a">
+            <div class="score-num" style="font-size:2.5rem;color:#22c55e">2700</div>
+            <div class="font-mono text-[9px] text-white/40 uppercase tracking-widest mt-1 font-bold">Players</div>
+          </div>
+          <div class="rounded-xl p-4 text-center" style="background:#fff;border:2px solid #b8d4b8;box-shadow:2px 2px 0 #b8d4b8">
+            <div class="score-num" style="font-size:2.5rem;color:#d97706">5.0★</div>
+            <div class="font-mono text-[9px] text-[#5a7a5a] uppercase tracking-widest mt-1 font-bold">Rating</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rev d1">
+        <div class="rounded-2xl overflow-hidden" style="border:3px solid #0a2e0a;box-shadow:6px 6px 0 #0a2e0a">
+          <img src="haris2.jpeg" alt="" class="w-full h-92 object-cover" style="filter:saturate(.5) brightness(.7)">
+          <div style="background:#0a2e0a;padding:24px">
+            <div class="font-display font-bold text-white text-2xl leading-none">HARIS HUSSAINI</div>
+            <div class="font-mono text-xs text-[#22c55e] uppercase tracking-widest mt-1">Founder · ZTH Training · Former Pro Player</div>
+            <div class="font-mono text-xs text-white/30 mt-1.5">Building the path he needed when he started.</div>
+          </div>
+        </div>
+        <!-- Social links -->
+        <div class="flex gap-3 mt-4">
+          <a href="https://instagram.com/zth_training" class="flex-1 rounded-xl py-3 text-center font-mono text-xs font-bold no-underline transition-all" style="background:#fff;border:2px solid #b8d4b8;color:#5a7a5a">◈ @zth_training</a>
+          <a href="https://tiktok.com/@zthtraining" class="flex-1 rounded-xl py-3 text-center font-mono text-xs font-bold no-underline transition-all" style="background:#fff;border:2px solid #b8d4b8;color:#5a7a5a">♪ @zthtraining</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE 30-DAY JOURNEY -->
+<section class="py-24" id="results" style="background:#f0f7f0">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="text-center mb-14 rev">
+      <span class="tag-dark mb-5 inline-block">The Journey</span>
+      <h2 class="font-display font-bold text-[#0a2e0a] mb-3" style="font-size:clamp(2.5rem,6vw,5rem);line-height:.88">
+        30 DAYS TO<br><span style="color:#16a34a">TRIAL READY.</span>
+      </h2>
+      <p class="text-[#5a7a5a] text-base max-w-xl mx-auto font-semibold">Here's exactly what your 30-day transformation looks like inside the ZTH Player Accelerator.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+      <!-- Timeline -->
+      <div class="space-y-0 rev" style="background:#fff;border:2px solid #e8f4e8;border-radius:16px;overflow:hidden">
+        <div style="background:#0a2e0a;padding:16px 24px">
+          <div class="font-mono text-xs text-[#22c55e] uppercase tracking-widest font-bold">30-Day Training Roadmap</div>
+        </div>
+        <div style="padding:24px;display:flex;flex-direction:column;gap:0">
+          <div class="flex gap-4 items-start pb-5" style="border-bottom:1px solid #e8f4e8">
+            <div class="font-mono text-xs text-[#16a34a] font-bold w-20 flex-shrink-0 pt-0.5">Days 1–7</div>
+            <div>
+              <div class="font-display font-bold text-[#0a2e0a] text-lg">TECHNICAL FOUNDATION</div>
+              <div class="text-[#5a7a5a] text-xs font-semibold leading-relaxed">Ball mastery, first touch, 1v1 scenarios, position-specific drills. Building the base that scouts notice immediately.</div>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start py-5" style="border-bottom:1px solid #e8f4e8">
+            <div class="font-mono text-xs text-[#16a34a] font-bold w-20 flex-shrink-0 pt-0.5">Days 8–14</div>
+            <div>
+              <div class="font-display font-bold text-[#0a2e0a] text-lg">PHYSICAL EDGE</div>
+              <div class="text-[#5a7a5a] text-xs font-semibold leading-relaxed">Speed, agility, conditioning, and diet protocol. The physical markers that separate academy prospects from everyone else.</div>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start py-5" style="border-bottom:1px solid #e8f4e8">
+            <div class="font-mono text-xs text-[#16a34a] font-bold w-20 flex-shrink-0 pt-0.5">Days 15–21</div>
+            <div>
+              <div class="font-display font-bold text-[#0a2e0a] text-lg">MENTAL GAME + CONFIDENCE</div>
+              <div class="text-[#5a7a5a] text-xs font-semibold leading-relaxed">Confidence on the ball, decision-making under pressure, dealing with coaches and teammates. The mental edge most players completely ignore.</div>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start pt-5">
+            <div class="font-mono text-xs text-[#16a34a] font-bold w-20 flex-shrink-0 pt-0.5">Days 22–30</div>
+            <div>
+              <div class="font-display font-bold text-[#0a2e0a] text-lg">TRIAL DAY SIMULATION</div>
+              <div class="text-[#5a7a5a] text-xs font-semibold leading-relaxed">Rehearsing academy trial conditions, reading the Ultimate Trial Day Guide, final physical peak, and the mindset approach that makes scouts remember you.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results + charts -->
+      <div class="space-y-4 rev d1">
+        <div class="rounded-2xl overflow-hidden" style="border:2px solid #b8d4b8">
+          <img src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?w=700&q=80&auto=format&fit=crop" alt="" class="w-full h-44 object-cover" style="filter:saturate(.5) brightness(.7)">
+          <div style="padding:20px;background:#fff">
+            <div class="font-mono text-xs text-[#16a34a] uppercase tracking-widest mb-1.5 font-bold">Before ZTH → 1 Month After</div>
+            <div class="font-display font-bold text-[#0a2e0a] text-xl">"I noticed changes very quickly."</div>
+            <div class="font-mono text-xs text-[#5a7a5a] mt-1">— Verified Member · 3 months after purchase</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-xl p-5 text-center" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a">
+            <div class="score-num" style="font-size:3rem;color:#16a34a">Daily</div>
+            <div class="font-mono text-[9px] text-[#5a7a5a] uppercase tracking-widest mt-1 font-bold">Training Routine</div>
+          </div>
+          <div class="rounded-xl p-5 text-center" style="background:#0a2e0a;border:2px solid #0a2e0a;box-shadow:3px 3px 0 #16a34a">
+            <div class="score-num" style="font-size:3rem;color:#22c55e">Weekly</div>
+            <div class="font-mono text-[9px] text-white/40 uppercase tracking-widest mt-1 font-bold">Coaching Calls</div>
+          </div>
+        </div>
+        <div class="rounded-xl p-5" style="background:#f59e0b;border:2px solid #0a2e0a;box-shadow:3px 3px 0 #0a2e0a">
+          <div class="font-mono text-xs text-black uppercase tracking-widest mb-2 font-bold">Confidence Guide — Free</div>
+          <div class="font-display font-bold text-black text-xl">Confidence On The Ball Guide + 30-Day Plan included with waitlist access</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="py-28" id="reviews" style="background:#e8f4e8;border-top:2px solid #b8d4b8;border-bottom:2px solid #b8d4b8">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 mb-14">
+      <div class="rev">
+        <span class="tag-dark mb-5 inline-block">Player Stories</span>
+        <h2 class="font-display font-bold text-[#0a2e0a]" style="font-size:clamp(2.5rem,5vw,4.5rem);line-height:.9">
+          2,700+ PLAYERS.<br><span style="color:#16a34a">ONE PROGRAMME.</span>
+        </h2>
+      </div>
+      <div class="rev rounded-2xl px-7 py-5 flex gap-7 items-center flex-shrink-0" style="background:#fff;border:2px solid #0a2e0a;box-shadow:4px 4px 0 #0a2e0a">
+        <div class="text-center">
+          <div class="score-num" style="font-size:3.5rem;color:#d97706">5.0★</div>
+          <div class="font-mono text-xs text-[#5a7a5a] mt-1 uppercase tracking-widest font-bold">Whop Rating</div>
+        </div>
+        <div class="w-px h-12" style="background:#b8d4b8"></div>
+        <div>
+          <div class="font-mono text-xs text-[#5a7a5a] uppercase tracking-widest font-bold">Verified</div>
+          <div class="font-display font-bold text-[#0a2e0a] text-xl mt-0.5">Top Rated</div>
+          <div class="font-mono text-xs text-[#16a34a] mt-1 font-bold">2,700+ players ✓</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <!-- Featured -->
+      <div class="md:col-span-2 rounded-2xl p-7 ch rev" style="background:#0a2e0a;border:2px solid #0a2e0a;box-shadow:5px 5px 0 #16a34a">
+        <div class="flex items-center justify-between mb-5">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center font-display font-bold text-black text-sm" style="background:#22c55e">LM</div>
+            <div><div class="font-bold text-white text-sm">Long-Term Member</div><div class="font-mono text-xs text-white/30">1 year after purchase</div></div>
+          </div>
+          <span class="font-display font-bold text-yellow-400 text-base">★★★★★</span>
+        </div>
+        <p class="text-white/70 text-sm leading-relaxed font-semibold mb-4">"I have been in ZTH program over one year. ZTH provide with a structured schedule for you train like a pro and have discipline. This program is for those who actually want to be a better player not for those who quit the next day. They provide you with everything like daily routine, weekly schedule, and Haris is genuinely invested in everyone. I can honestly say the ZTH Player Accelerator isn't just a program — it's a total game-changer."</p>
+        <div class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5" style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25)">
+          <svg class="w-3 h-3 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          <span class="font-mono text-xs text-green-400 font-bold">Whop Verified · 1yr</span>
+        </div>
+      </div>
+
+      <div class="rounded-2xl p-6 ch rev d1" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2.5"><div class="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-xs font-display" style="background:#16a34a">OA</div><div><div class="font-bold text-[#0a2e0a] text-sm">Oscar A.</div><div class="font-mono text-xs text-[#5a7a5a]">1 month after purchase</div></div></div>
+          <span class="text-yellow-500 text-sm font-bold">★★★★★</span>
+        </div>
+        <p class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">"This program is really helping me maintain my confidence and get better at my weaknesses already. It is a true soccer program that you must try if you are tired of being bullied by teammates for being bad at soccer. The content is genuinely quality."</p>
+        <div class="mt-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5" style="background:rgba(22,163,74,.06);border:1px solid rgba(22,163,74,.15)"><svg class="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="font-mono text-xs text-green-600 font-bold">Verified</span></div>
+      </div>
+
+      <div class="rounded-2xl p-6 ch rev" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2.5"><div class="w-9 h-9 rounded-xl flex items-center justify-center text-[#0a2e0a] font-bold text-xs font-display" style="background:#f59e0b">CM</div><div><div class="font-bold text-[#0a2e0a] text-sm">Confident Member</div><div class="font-mono text-xs text-[#5a7a5a]">9 months after purchase</div></div></div>
+          <span class="text-yellow-500 text-sm font-bold">★★★★★</span>
+        </div>
+        <p class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">"Player accelerator is one of the best ways to get better in football. I have been doing the diet thing for a week and I feel much stronger and active. ZTH training encourages me to train and get better. With the Player Accelerator I made a huge difference between where I started and where I am now."</p>
+        <div class="mt-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5" style="background:rgba(22,163,74,.06);border:1px solid rgba(22,163,74,.15)"><svg class="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="font-mono text-xs text-green-600 font-bold">Verified · 9mo</span></div>
+      </div>
+
+      <div class="rounded-2xl p-6 ch rev d1" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2.5"><div class="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-xs font-display" style="background:#0a2e0a">GM</div><div><div class="font-bold text-[#0a2e0a] text-sm">Growing Player</div><div class="font-mono text-xs text-[#5a7a5a]">3 months after purchase</div></div></div>
+          <span class="text-yellow-500 text-sm font-bold">★★★★★</span>
+        </div>
+        <p class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">"I joined the Player Accelerator on Whop and it has been an excellent experience. The content is high quality, well organized, and truly valuable. Highly recommended for anyone serious about growing and improving as a football player."</p>
+        <div class="mt-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5" style="background:rgba(22,163,74,.06);border:1px solid rgba(22,163,74,.15)"><svg class="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="font-mono text-xs text-green-600 font-bold">Verified · 3mo</span></div>
+      </div>
+
+      <div class="rounded-2xl p-6 ch rev d2" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2.5"><div class="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-xs font-display" style="background:#d97706">PP</div><div><div class="font-bold text-[#0a2e0a] text-sm">Doubted Player</div><div class="font-mono text-xs text-[#5a7a5a]">9 months after purchase</div></div></div>
+          <span class="text-yellow-500 text-sm font-bold">★★★★★</span>
+        </div>
+        <p class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">"Player accelerator has been the best thing to ever happen to me personally because I used to doubt my abilities and be so unconfident in myself. But when I joined it all turned around. I noticed changes very quick and have gotten a lot better with the ball. I just want to thank ZTH for everything."</p>
+        <div class="mt-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5" style="background:rgba(22,163,74,.06);border:1px solid rgba(22,163,74,.15)"><svg class="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="font-mono text-xs text-green-600 font-bold">Verified · 9mo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="py-28" id="pricing" style="background:#f0f7f0">
+  <div class="max-w-4xl mx-auto px-5 lg:px-10">
+    <div class="text-center mb-14 rev">
+      <span class="tag-dark mb-5 inline-block">Join the Accelerator</span>
+      <h2 class="font-display font-bold text-[#0a2e0a] mb-3" style="font-size:clamp(2.5rem,6vw,5rem);line-height:.88">
+        YOUR PATH TO<br><span style="color:#16a34a">THE ACADEMY.</span>
+      </h2>
+      <p class="text-[#5a7a5a] text-lg max-w-xl mx-auto font-semibold">$39 every 28 days. The full Player Accelerator — course, interviews, trial guide, coaching calls, and community.</p>
+    </div>
+
+    <div class="rounded-2xl overflow-hidden rev" style="border:3px solid #0a2e0a;box-shadow:6px 6px 0 #0a2e0a">
+      <div style="background:#0a2e0a;padding:32px 40px;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;justify-content:space-between">
+        <div>
+          <div class="font-mono text-xs text-[#22c55e]/60 uppercase tracking-widest mb-2">ZTH Player Accelerator</div>
+          <div class="score-num" style="font-size:5rem;color:#22c55e">$39</div>
+          <div class="font-mono text-sm text-white/40 mt-1">/ 28 days · cancel anytime via Whop</div>
+        </div>
+        <div class="text-right">
+          <div class="font-mono text-xs text-white/30 uppercase tracking-widest mb-1">Affiliate Rate</div>
+          <div class="score-num" style="font-size:3.5rem;color:#22c55e">30%</div>
+          <div class="font-mono text-xs text-white/30 mt-0.5">recurring commission</div>
+        </div>
+      </div>
+      <div style="background:#fff;padding:32px 40px">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+          <div class="flex gap-3 items-start text-sm font-bold text-[#1a2e1a]"><svg class="w-4 h-4 text-[#16a34a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Full Player Accelerator course (step-by-step)</div>
+          <div class="flex gap-3 items-start text-sm font-bold text-[#1a2e1a]"><svg class="w-4 h-4 text-[#16a34a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Ultimate Trial Day Guide (mental + physical)</div>
+          <div class="flex gap-3 items-start text-sm font-bold text-[#1a2e1a]"><svg class="w-4 h-4 text-[#16a34a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Pro player interviews (behind-the-scenes)</div>
+          <div class="flex gap-3 items-start text-sm font-bold text-[#1a2e1a]"><svg class="w-4 h-4 text-[#16a34a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Weekly coaching calls with Haris Hussaini</div>
+          <div class="flex gap-3 items-start text-sm font-bold text-[#1a2e1a]"><svg class="w-4 h-4 text-[#16a34a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Daily training routine + weekly schedule</div>
+          <div class="flex gap-3 items-start text-sm font-bold text-[#1a2e1a]"><svg class="w-4 h-4 text-[#16a34a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Diet + conditioning protocols</div>
+          <div class="flex gap-3 items-start text-sm font-bold text-[#1a2e1a]"><svg class="w-4 h-4 text-[#16a34a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Global player community (2,700+ members)</div>
+          <div class="flex gap-3 items-start text-sm font-bold text-[#1a2e1a]"><svg class="w-4 h-4 text-[#d97706] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span><strong class="text-[#d97706]">30% affiliate commission</strong> on referrals</span></div>
+          <div class="flex gap-3 items-start text-sm font-bold text-[#1a2e1a]"><svg class="w-4 h-4 text-[#16a34a] mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>Cancel anytime · No lock-in</div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="https://whop.com/zth-training/zth-training?a=digitalartlab"
+             class="flex-1 block text-center bg-[#16a34a] hover:bg-[#15803d] text-white font-black text-base px-6 py-4 rounded-xl no-underline transition-all"
+             style="box-shadow:0 4px 14px rgba(22,163,74,.3)">
+            ⚽ Join Player Accelerator — $39/28 days
+          </a>
+          <a href="https://whop.com/zth-training?a=digitalartlab"
+             class="block text-center font-bold text-base px-6 py-4 rounded-xl no-underline transition-all"
+             style="border:2px solid #b8d4b8;color:#0a2e0a;background:#f0f7f0">
+            View on Whop
+          </a>
+        </div>
+        <p class="text-center font-mono text-xs mt-4" style="color:#5a7a5a">$39/28 days · Cancel anytime · 30% affiliate commission · Managed via Whop</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-24" id="faq" style="background:#e8f4e8;border-top:2px solid #b8d4b8">
+  <div class="max-w-4xl mx-auto px-5 lg:px-10">
+    <div class="text-center mb-12 rev">
+      <span class="tag-line mb-5 inline-block">FAQ</span>
+      <h2 class="font-display font-bold text-[#0a2e0a]" style="font-size:clamp(2.5rem,5vw,4.5rem);line-height:.88">QUESTIONS ANSWERED.</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="rounded-2xl p-6 ch rev" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a">
+        <div class="font-display font-bold text-[#0a2e0a] text-xl mb-3">Do I need to be professional level?</div>
+        <div class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">No. ZTH Player Accelerator is designed for players at all levels who are serious about improving. Whether you're 14 and just starting competitive football or 22 and ready for your first academy trial — the programme meets you where you are.</div>
+      </div>
+      <div class="rounded-2xl p-6 ch rev d1" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a">
+        <div class="font-display font-bold text-[#0a2e0a] text-xl mb-3">What is the 30-day guarantee?</div>
+        <div class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">Haris's goal is to make you academy trial-ready within 30 days. The programme is structured around this timeline — with daily and weekly schedules, a trial day guide, and coaching calls to keep you on track and accountable throughout.</div>
+      </div>
+      <div class="rounded-2xl p-6 ch rev" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a">
+        <div class="font-display font-bold text-[#0a2e0a] text-xl mb-3">How is this different from YouTube?</div>
+        <div class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">YouTube gives you random drills. ZTH gives you a structured 30-day programme built by a former pro, real interviews with current pros, a trial day guide, and direct weekly coaching calls with Haris. Structure, accountability, and mentorship — YouTube has none of these.</div>
+      </div>
+      <div class="rounded-2xl p-6 ch rev d1" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a">
+        <div class="font-display font-bold text-[#0a2e0a] text-xl mb-3">Can I cancel anytime?</div>
+        <div class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">Yes. Cancel through Whop at any point — no penalty, no lock-in. The 28-day billing cycle resets every 28 days and access continues until the end of your current period.</div>
+      </div>
+      <div class="rounded-2xl p-6 ch rev" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a">
+        <div class="font-display font-bold text-[#0a2e0a] text-xl mb-3">What age range is this for?</div>
+        <div class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">The programme is designed for players aged 13–25 who have serious aspirations to play at a higher level. The mental and physical components scale to different levels of physical maturity and competitive experience.</div>
+      </div>
+      <div class="rounded-2xl p-6 ch rev d1" style="background:#fff;border:2px solid #b8d4b8;box-shadow:3px 3px 0 #0a2e0a">
+        <div class="font-display font-bold text-[#0a2e0a] text-xl mb-3">How does the affiliate programme work?</div>
+        <div class="text-[#5a7a5a] text-sm leading-relaxed font-semibold">Share your Whop affiliate link. Earn 30% recurring commission on every player who joins the ZTH Player Accelerator. Paid automatically through Whop — no minimum, no threshold.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-36 relative overflow-hidden" style="background:#0a2e0a">
+  <div class="absolute inset-0 field-bg opacity-30"></div>
+  <!-- Pitch centre circle decoration -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none" style="border:2px solid rgba(34,197,94,.1)"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full pointer-events-none" style="border:2px solid rgba(34,197,94,.08)"></div>
+  <!-- Big ⚽ watermark -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none font-display" style="font-size:50vw;opacity:.025;color:#22c55e;line-height:1">⚽</div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-5 text-center">
+    <span class="tag-g mb-8 inline-block">Your Academy Opportunity Awaits</span>
+    <h2 class="font-display font-bold text-white mb-6" style="font-size:clamp(3rem,12vw,10rem);line-height:.85">
+      YOUR TURN<br><span style="color:#22c55e">TO SIGN.</span>
+    </h2>
+    <p class="text-white/50 text-lg max-w-2xl mx-auto leading-relaxed mb-12 font-semibold">
+      2,700+ players from around the world chose ZTH. The course, the guide, the interviews, the coaching calls — everything to go from where you are now to academy-ready in 30 days. $39. One decision.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center mb-10">
+      <a href="https://whop.com/zth-training/zth-training?a=digitalartlab"
+         class="inline-flex items-center gap-2 bg-[#16a34a] hover:bg-[#22c55e] text-white font-black text-lg px-10 py-5 rounded-xl transition-all no-underline"
+         style="box-shadow:0 8px 24px rgba(22,163,74,.35)">
+        ⚽ Join the Player Accelerator — $39
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://whop.com/zth-training?a=digitalartlab"
+         class="inline-flex items-center gap-2 text-white font-bold text-lg px-10 py-5 rounded-xl transition-all no-underline"
+         style="border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06)">
+        View on Whop
+      </a>
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-5 text-sm text-white/30 font-mono font-bold">
+      <span>$39 / 28 days</span><span>·</span><span>Cancel anytime</span><span>·</span><span>30% affiliate</span><span>·</span><span>2,700+ players</span><span>·</span><span>5.0★</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#061806;border-top:1px solid #0a2e0a;padding:56px 0 32px">
+  <div class="max-w-7xl mx-auto px-5 lg:px-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center text-lg" style="background:#0a2e0a;border:1px solid #134513">⚽</div>
+          <div><div class="font-display font-bold text-white text-2xl leading-none">ZTH Training</div><div class="font-mono text-[9px] text-[#22c55e]/50 uppercase tracking-widest mt-0.5">Player Accelerator</div></div>
+        </div>
+        <p class="text-sm leading-relaxed mb-5 max-w-xs font-semibold" style="color:rgba(255,255,255,.3)">Sign for a pro academy in 30 days. Founded by ex-pro Haris Hussaini. 2,700+ players worldwide. The structured path you always needed.</p>
+        <div class="flex gap-2">
+          <a href="https://instagram.com/zth_training" class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm no-underline" style="background:#0a2e0a;border:1px solid #134513;color:rgba(255,255,255,.3)">◈</a>
+          <a href="https://tiktok.com/@zthtraining" class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm no-underline" style="background:#0a2e0a;border:1px solid #134513;color:rgba(255,255,255,.3)">♪</a>
+          <a href="https://whop.com/zth-training?a=digitalartlab" class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm no-underline" style="background:#0a2e0a;border:1px solid #134513;color:rgba(255,255,255,.3)">W</a>
+        </div>
+      </div>
+      <div>
+        <div class="font-mono text-[10px] uppercase tracking-widest mb-5" style="color:rgba(255,255,255,.25)">Programme</div>
+        <ul class="space-y-3 list-none">
+          <li><a href="https://whop.com/zth-training/zth-training?a=digitalartlab" class="text-sm no-underline font-semibold" style="color:rgba(255,255,255,.3)">Join — $39/28 days</a></li>
+          <li><a href="https://whop.com/zth-training?a=digitalartlab" class="text-sm no-underline font-semibold" style="color:rgba(255,255,255,.3)">View on Whop</a></li>
+          <li><a href="#pricing" class="text-sm no-underline font-semibold" style="color:rgba(255,255,255,.3)">Pricing</a></li>
+          <li><a href="#reviews" class="text-sm no-underline font-semibold" style="color:rgba(255,255,255,.3)">Player Stories</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-mono text-[10px] uppercase tracking-widest mb-5" style="color:rgba(255,255,255,.25)">What's Inside</div>
+        <ul class="space-y-3 list-none">
+          <li><span class="text-sm font-semibold" style="color:rgba(255,255,255,.3)">Player Accelerator Course</span></li>
+          <li><span class="text-sm font-semibold" style="color:rgba(255,255,255,.3)">Trial Day Guide</span></li>
+          <li><span class="text-sm font-semibold" style="color:rgba(255,255,255,.3)">Pro Player Interviews</span></li>
+          <li><span class="text-sm font-semibold" style="color:rgba(255,255,255,.3)">Weekly Coaching Calls</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-mono text-[10px] uppercase tracking-widest mb-5" style="color:rgba(255,255,255,.25)">Community</div>
+        <ul class="space-y-3 list-none">
+          <li><span class="text-sm font-semibold" style="color:rgba(255,255,255,.3)">2,700+ Players Worldwide</span></li>
+          <li><span class="text-sm font-semibold" style="color:rgba(255,255,255,.3)">Coach Haris Hussaini</span></li>
+          <li><span class="text-sm font-semibold" style="color:rgba(255,255,255,.3)">30% Affiliate Programme</span></li>
+          <li><span class="text-sm font-semibold" style="color:rgba(255,255,255,.3)">Champions Club</span></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid #0a2e0a;padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px">
+      <p class="font-mono text-xs" style="color:rgba(255,255,255,.15)">© 2026 ZTH Training · All rights reserved · Founded by Haris Hussaini</p>
+      <p class="font-mono text-xs max-w-lg leading-relaxed" style="color:rgba(255,255,255,.1)">ZTH Training is an independent football development programme. Individual results depend on effort, commitment, and other factors. Getting signed for a pro academy is not guaranteed but our programme gives you the best possible preparation.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const hb=document.getElementById('ham-btn'),mm=document.getElementById('mob-menu'),ml=document.querySelectorAll('.mob-lnk');
+function tog(fc=false){const o=mm.classList.contains('open');if(fc||o){mm.classList.remove('open');hb.classList.remove('ham-open');hb.setAttribute('aria-expanded','false')}else{mm.classList.add('open');hb.classList.add('ham-open');hb.setAttribute('aria-expanded','true')}}
+hb.addEventListener('click',()=>tog());
+ml.forEach(l=>l.addEventListener('click',()=>tog(true)));
+document.addEventListener('click',e=>{if(!document.querySelector('nav').contains(e.target))tog(true)});
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:.06,rootMargin:'0px 0px -10px 0px'});
+document.querySelectorAll('.rev').forEach(el=>ro.observe(el));
+window.addEventListener('load',()=>{document.querySelectorAll('.rev:not(.vis)').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<window.innerHeight+100)el.classList.add('vis')})});
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.boxShadow=window.scrollY>60?'0 4px 20px rgba(10,46,10,.15)':'none'});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-70,behavior:'smooth'})}})});
+</script>
+</body>
+</html>
